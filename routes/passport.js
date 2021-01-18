@@ -22,7 +22,7 @@ module.exports = function (passport){
     passport.use (new FacebookStrategy({
             clientID: config.FACEBOOK_APP_ID,
             clientSecret: config.FACEBOOK_APP_SECRET,
-            callbackURL: "http://localhost:3000/auth/facebook/callback"
+            callbackURL: "https://ca.wissenaire.org/auth/facebook/callback"
         },
         function(accessToken, refreshToken, profile, done) {
             
