@@ -6,7 +6,7 @@ require('./passport')(passport);
 router.get('/facebook', passport.authenticate('facebook'))
 
 router.get('/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
+  passport.authenticate('facebook',{ scope : ['email'] }, { failureRedirect: '/auth/facebook' }),
   (req, res) => {
     res.redirect('/home')
   })
