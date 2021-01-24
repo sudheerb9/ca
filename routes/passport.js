@@ -4,6 +4,7 @@ require('../config/conn');
 require('../config/config');
 
 module.exports = function (passport){
+    console.log('Hi this is passport');
     passport.serializeUser(function(user,done){
 		done(null, user.id);
 	});
@@ -27,7 +28,7 @@ module.exports = function (passport){
             profileFields: ['id', 'emails', 'name']
         },
         function(accessToken, refreshToken, profile, done) {
-            
+            console.log('Hi this is passport using facebook strategy');
             conn.connect(function(err) {
                 if (err) throw err;
                 else {
