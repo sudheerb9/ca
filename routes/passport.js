@@ -6,7 +6,7 @@ require('../config/config');
 module.exports = function (passport){
     console.log('Hi this is passport');
     passport.serializeUser(function(user,done){
-		done(null, user._id);
+		done(null, user);
 	});
 
 	passport.deserializeUser(function(id,done){
