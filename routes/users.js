@@ -17,9 +17,7 @@ require('../config/config');
   passport.use (new FacebookStrategy({
           clientID: config.FACEBOOK_APP_ID,
           clientSecret: config.FACEBOOK_APP_SECRET,
-          callbackURL: "https://ca.wissenaire.org/auth/facebook/callback",
-          passReqToCallback : true,
-          profileFields: ['id', 'emails', 'name']
+          callbackURL: "https://ca.wissenaire.org/auth/facebook/callback"
       },
       function(accessToken, refreshToken, profile, done) {
           console.log('Hi this is passport using facebook strategy');
