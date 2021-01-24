@@ -15,8 +15,8 @@ require('../config/config');
   });
     
   passport.use (new FacebookStrategy({
-          clientID: config.FACEBOOK_APP_ID,
-          clientSecret: config.FACEBOOK_APP_SECRET,
+          clientID: "1874655192687215",
+          clientSecret: "79c493bdff6b73ef842c2aac5b2980b8",
           callbackURL: "https://ca.wissenaire.org/auth/facebook/callback"
       },
       function(accessToken, refreshToken, profile, done) {
