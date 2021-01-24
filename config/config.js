@@ -1,4 +1,4 @@
 module.exports = config = {
-    FACEBOOK_APP_ID : '96689537530-jkk11ojp0i4r1ffq7q6u8idamsm59c9j.apps.googleusercontent.com',
-    FACEBOOK_APP_SECRET : 'NtXKC_Ba8lAWJGuysBU3ADXm'
+    FACEBOOK_APP_ID : '1874655192687215',
+    FACEBOOK_APP_SECRET : '79c493bdff6b73ef842c2aac5b2980b8'
 }

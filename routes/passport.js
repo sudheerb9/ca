@@ -1,5 +1,5 @@
 const passport = require('passport');
-const FacebookStrategy = require('passport-google').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 require('../config/conn');
 require('../config/config');
 
