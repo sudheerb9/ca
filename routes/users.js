@@ -15,8 +15,8 @@ require('../config/config');
   });
     
   passport.use (new FacebookStrategy({
-          clientID: "1874655192687215",
-          clientSecret: "79c493bdff6b73ef842c2aac5b2980b8",
+          clientID: config.FACEBOOK_APP_ID,
+          clientSecret: config.FACEBOOK_APP_SECRET,
           callbackURL: "https://ca.wissenaire.org/auth/facebook/callback"
       },
       function(accessToken, refreshToken, profile, done) {
@@ -50,10 +50,11 @@ require('../config/config');
       }
   ));
 
-router.get('/auth/facebook', passport.authenticate('facebook'))
+router.get('/auth/facebook', passport.authenticate('facebook', {
+  scope: ['public_profile', 'email']}))
 
 router.get('/auth/facebook/callback', 
-  passport.authenticate('facebook',{ scope : ['email'] }, { failureRedirect: '/auth/facebook' }),
+  passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
   (req, res) => {
     console.log('Hi this is callback');
     res.redirect('/home')
