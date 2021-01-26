@@ -51,7 +51,9 @@ require('../config/config');
   ));
 
 router.get('/auth/facebook', passport.authenticate('facebook', {
-  scope: ['public_profile', 'email']}))
+  scope: ['public_profile', 'email']}), (req, res) => {
+    console.log('In auth route');
+  })
 
 router.get('/auth/facebook/callback', 
   passport.authenticate('facebook', { failureRedirect: '/auth/facebook' }),
