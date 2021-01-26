@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-module.exports = conn = mysql.createPool({
+module.exports = conn = mysql.createConnection({
     host: "localhost",
     user: "wissenaire_sudheer",
     password: "sudheer@wissenaire",
