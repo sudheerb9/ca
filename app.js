@@ -85,7 +85,7 @@ app.get('/auth/facebook/callback',
 passport.authenticate('facebook', {successRedirect:'/home', failureRedirect: '/auth/facebook' }),
 (req, res) => {
   console.log('Hi this is callback');
-  alert('Team wissenaire welcomes you ! ${user.name}')
+  alert('Team wissenaire welcomes you !')
   
 })
 
