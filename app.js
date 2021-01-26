@@ -10,7 +10,6 @@ require('./config/config');
 require('./config/conn');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
