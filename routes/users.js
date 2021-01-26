@@ -62,7 +62,6 @@ router.get('/auth/facebook/callback',
     res.redirect('/home')
   })
 
-
 router.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
