@@ -6,14 +6,21 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var session = require('cookie-session');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-require('./config/conn');
+const FacebookStrategy = require('passport-facebook').Strategy;
+// require('./config/conn');
+var mysql = require('mysql');
+
 require('./config/config');
 
 var indexRouter = require('./routes/index');
 
 var app = express();
-
+const conn = mysql.createPool({
+  host: "localhost",
+  user: "wissenaire_sudheer",
+  password: "sudheer@wissenaire",
+  database: "wissenaire_ca21"
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -38,60 +45,53 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
   
-passport.use (new GoogleStrategy({
-        clientID: config.FACEBOOK_APP_ID,
-        clientSecret: config.FACEBOOK_APP_SECRET,
-        callbackURL: "https://ca21.wissenaire.org/auth/facebook/callback"
-    },
-    function(accessToken, refreshToken, profile, done) {
-        console.log('Hi this is passport using facebook strategy');
-        
-        query = "SELECT * FROM users WHERE facebookid = "+profile.id+"";
-        conn.connect((err) => {
-          if (err) throw err;
-          console.log('Connected!');
-        });
-        conn.query(query,function(err,user){
-          console.log('query executed');
-            if (err)
-                return done(err);
-            else if (user) {
-                console.log(user);
-                return done(null, user);
-            } 
-            else {
-                console.log('else');
-                var insertquery = "INSERT INTO users (name, email, facebookid, photo, accesstoken, refreshtoken) \
-                VALUES ( '"+profile.displayName+"', '"+profile.emails[0].value+"', '"+profile.id+"', '"+profile.photos[0].value+"', '"+accessToken+"', '"+refreshToken+"' ) "
-                conn.query(insertquery, function (err, result) {
-                    if (err) throw err;
-                    console.log(result);
-                });
-                console.log(profile.emails[0].value);
-                return done(null, user);
-            }
-        });
-        conn.end((err) => {
-          // The connection is terminated gracefully
-          // Ensures all remaining queries are executed
-          // Then sends a quit packet to the MySQL server.
-        })
+passport.use (new FacebookStrategy({
+      clientID: config.FACEBOOK_APP_ID,
+      clientSecret: config.FACEBOOK_APP_SECRET,
+      callbackURL: "https://ca21.wissenaire.org/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function() {
+      const qr = ("SELECT * from users where email ='" + profile.emails[0].value + "';");
+        conn.query(qr, (err, rows) => {
+          if (err) {
+            throw err;
+          }
+          if (rows && rows.length === 0) {
+            console.log(profile.emails[0].value);
+            console.log(profile.id);
+            console.log(profile.displayName);
+            console.log("Creating profile");
+            let sql = ("INSERT into users (facebookid,photo,accesstoken,refreshtoken,name,email) VALUES('" + profile.id + "','"+profile.photos[0].value+"', '" + accessToken + "','" + refreshToken + "','" + profile.displayName + "','" + profile.emails[0].value + "');");
+            conn.query(sql, function(err, result) {
+                if (err) {
+                    throw err;
+
+                }
+                console.log("fb inserted");
+            });
             
+            return done(null, true);
+
+          } else {
+            console.log("Account already exists");      
+            return done(null, false);
+      }
+    });
+    
+  });
+}));
+
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
+
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
+    function(req, res) {
+      res.redirect('/home')   
     }
-));
+);
+
 
 app.use('/', indexRouter);
-
-app.get('/auth/facebook', passport.authenticate('google',  { scope : ['profile', 'email'] }), (req, res) => {
-  console.log('In auth route');
-})
-
-app.get('/auth/facebook/callback', passport.authenticate('google', { successRedirect:'/home', failureRedirect: '/auth/google'}) ,
-  (req, res) => {
-      console.log("login done");
-      res.redirect('/home');
-  }
-);
 
 app.get('/logout', (req, res) => {
   req.logout()
