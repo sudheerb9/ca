@@ -9,7 +9,6 @@ var session = require('cookie-session');
 const FacebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
-
 require('./config/config');
 
 var indexRouter = require('./routes/index');
@@ -21,6 +20,7 @@ const conn = mysql.createPool({
   password: "sudheer@wissenaire",
   database: "wissenaire_ca21"
 });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -82,7 +82,7 @@ passport.use (new FacebookStrategy({
   });
 }));
 
-app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate', scope: ['user_friends', 'manage_pages'] }));
+app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate'}));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
