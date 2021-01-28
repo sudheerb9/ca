@@ -5,7 +5,6 @@ var bodyParser= require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
-var session = require('cookie-session');
 const facebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
@@ -29,11 +28,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret : "Our little Secret Here",
-  resave : false,
-  saveUninitialized : false
-}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
