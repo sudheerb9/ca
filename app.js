@@ -82,7 +82,7 @@ passport.use (new FacebookStrategy({
   });
 }));
 
-app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate'}));
+app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'reauthenticate', scope: ['public_profile']}));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
