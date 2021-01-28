@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var session = require('cookie-session');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const facebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
 require('./config/config');
@@ -45,10 +45,10 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
   
-passport.use (new GoogleStrategy({
-      clientID: '96689537530-jkk11ojp0i4r1ffq7q6u8idamsm59c9j.apps.googleusercontent.com',
-      clientSecret: 'NtXKC_Ba8lAWJGuysBU3ADXm',
-      callbackURL: "https://ca21.wissenaire.org/auth/google/callback"
+passport.use (new facebookStrategy({
+      clientID: '1874655192687215',
+      clientSecret: '79c493bdff6b73ef842c2aac5b2980b8',
+      callbackURL: "https://ca21.wissenaire.org/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
@@ -82,9 +82,9 @@ passport.use (new GoogleStrategy({
   });
 }));
 
-app.get('/auth/google', passport.authenticate('google', {scope:['profile', 'email']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope:['public_profile']}));
 
-app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
       res.redirect('/home')   
     }
