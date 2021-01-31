@@ -29,6 +29,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', indexRouter);
+
+//passport oauth 
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -90,14 +93,11 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRe
   }
 );
 
-
-app.use('/', indexRouter);
-
 app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
-
+//passport oauth
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
