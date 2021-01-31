@@ -20,6 +20,7 @@ const conn = mysql.createPool({
   database: "wissenaire_ca21"
 });
 
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,9 +29,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use(indexRouter);
 
-//passport oauth
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -82,10 +82,9 @@ passport.use (new facebookStrategy({
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
-      if(req.user) res.redirect('/home');
-      else res.redirect('/profile')
+      res.redirect('/home')   
     }
 );
 
@@ -93,7 +92,7 @@ app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
-//passport oauth
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
