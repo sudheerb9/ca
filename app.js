@@ -53,41 +53,41 @@ passport.use (new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
       const qr = ("SELECT * from users where email ='" + profile.emails[0].value + "';");
-        conn.query(qr, (err, rows) => {
-          if (err) {
+      pool.query(qr, (err, rows) => {
+        if (err) {
             throw err;
-          }
-          if (rows && rows.length === 0) {
-            console.log(profile.emails[0].value);
-            console.log(profile.id);
-            console.log(profile.displayName);
-            console.log("Creating profile");
-            let sql = ("INSERT into users (facebookid,photo,accesstoken,refreshtoken,name,email) VALUES('" + profile.id + "','"+profile.photos[0].value+"', '" + accessToken + "','" + refreshToken + "','" + profile.displayName + "','" + profile.emails[0].value + "');");
-            conn.query(sql, function(err, result) {
-                if (err) {
-                    throw err;
+        }
+        if (rows && rows.length === 0) {
+          console.log(profile.emails[0].value);
+          console.log(profile.id);
+          console.log(profile.displayName);
+          let sql = ("INSERT into users (facebookid,photo,accesstoken,refreshtoken,name,email) VALUES('" + profile.id + "','"+profile.photos[0].value+"', '" + accessToken + "','" + refreshToken + "','" + profile.displayName + "','" + profile.emails[0].value + "');");
+          pool.query(sql, function(err, result) {
+            if (err) {
+                throw err;
 
-                }
-                console.log("fb inserted");
-            });
-            
-            return done(null, true);
+            }
+            console.log("fb inserted");
+          });
+          
+          return done(null, true);
+  
+        } else {
+          console.log("Error Email already exist");
+          return done(null, false);
+  
+        }
+      });    
+    }) 
+  })
+);
 
-          } else {
-            console.log("Account already exists");      
-            return done(null, false);
-      }
-    });
-    
-  });
-}));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
-app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['public_profile'] }));
-
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
-    function(req, res) {
-      res.redirect('/home');   
-    }
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/no', failureFlash: true }),
+  function(req, res) {
+    res.redirect('/home')   
+  }
 );
 
 
