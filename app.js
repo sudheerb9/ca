@@ -74,7 +74,7 @@ passport.use (new FacebookStrategy({
   
         } else {
           console.log("Error Email already exist");
-          return done(null, false);
+          return done(null, true);
   
         }
       });    
