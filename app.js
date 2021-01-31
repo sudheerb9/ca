@@ -5,7 +5,7 @@ var bodyParser= require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
-const facebookStrategy = require('passport-facebook').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
 require('./config/config');
@@ -40,7 +40,7 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
   
-passport.use (new facebookStrategy({
+passport.use (new FacebookStrategy({
       clientID: '1874655192687215',
       clientSecret: '79c493bdff6b73ef842c2aac5b2980b8',
       callbackURL: "https://ca21.wissenaire.org/auth/facebook/callback",
@@ -82,7 +82,7 @@ passport.use (new facebookStrategy({
   });
 }));
 
-app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['public_profile'] }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
