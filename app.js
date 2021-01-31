@@ -29,8 +29,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(indexRouter);
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -87,6 +85,9 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRe
       res.redirect('/home')   
     }
 );
+
+
+app.use('/', indexRouter);
 
 app.get('/logout', (req, res) => {
   req.logout()
