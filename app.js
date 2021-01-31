@@ -82,9 +82,9 @@ passport.use (new facebookStrategy({
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/', failureFlash: true }),
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
-      if(req.user.name) res.redirect('/home');
+      if(req.user) res.redirect('/home');
       else res.redirect('/profile')
     }
 );
