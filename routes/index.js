@@ -15,7 +15,7 @@ router.get('/fbshare', function(req, res, next) {
 });
 
 router.get('/ideate', function(req, res, next) {
-  res.render('ideate',{user:req.user});
+  res.render('ideate');
 });
 
 router.get('/leaderboard', function(req, res, next) {
