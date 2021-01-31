@@ -80,7 +80,7 @@ passport.use (new facebookStrategy({
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/ok', failureFlash: true }),
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
       res.redirect('/home')   
     }
