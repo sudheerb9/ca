@@ -53,7 +53,7 @@ passport.use (new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
       const qr = ("SELECT * from users where email ='" + profile.emails[0].value + "';");
-      pool.query(qr, (err, rows) => {
+      conn.query(qr, (err, rows) => {
         if (err) {
             throw err;
         }
@@ -62,7 +62,7 @@ passport.use (new FacebookStrategy({
           console.log(profile.id);
           console.log(profile.displayName);
           let sql = ("INSERT into users (facebookid,photo,accesstoken,refreshtoken,name,email) VALUES('" + profile.id + "','"+profile.photos[0].value+"', '" + accessToken + "','" + refreshToken + "','" + profile.displayName + "','" + profile.emails[0].value + "');");
-          pool.query(sql, function(err, result) {
+          conn.query(sql, function(err, result) {
             if (err) {
                 throw err;
 
