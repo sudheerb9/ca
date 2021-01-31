@@ -45,6 +45,10 @@ passport.use (new facebookStrategy({
       clientSecret: '79c493bdff6b73ef842c2aac5b2980b8',
       callbackURL: "https://ca21.wissenaire.org/auth/facebook/callback",
       profileFields: ['id', 'displayName', 'photos', 'email']
+      // clientID        : '986762757676-2pq35rlfhh2t1u17gcgliquuuq6vgfn9.apps.googleusercontent.com',
+      // clientSecret    : '3Os8QiwahxzJsJNk7VhrFB4F',
+      // callbackURL     : 'http://localhost:3000/auth/facebook/callback',
+      // userProfileURL  : 'https://www.googleapis.com/oauth2/v3/userinfo'
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
@@ -78,11 +82,11 @@ passport.use (new facebookStrategy({
   });
 }));
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
-      res.redirect('/home')   
+      res.redirect('/home');   
     }
 );
 
