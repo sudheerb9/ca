@@ -30,12 +30,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use(session({
   secret : "Our little Secret Here",
   resave : false,
   saveUninitialized : false
 }));
+
+app.use('/', indexRouter);
+
 //passport oauth 
 app.use(passport.initialize());
 app.use(passport.session());
