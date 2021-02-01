@@ -78,11 +78,11 @@ passport.use (new FacebookStrategy({
             console.log("Fb inserted");
           });
           
-          return done(null, true);
+          return done(null, profile);
   
         } else {
           console.log("Already logged in");
-          return done(null, true);
+          return done(null, profile);
   
         }
       });    
@@ -94,7 +94,6 @@ app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }))
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/no', failureFlash: true }),
   function(req, res) {
-    req.user = user;
     res.redirect('/home')   
   }
 );
