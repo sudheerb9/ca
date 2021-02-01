@@ -3,6 +3,7 @@ var router = express.Router();
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { 
+    console.log(req.user);
     return next();
   }
   res.redirect('/login')
@@ -14,7 +15,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/home',ensureAuthenticated, function(req, res, next) {
   console.log(req.user);
-  res.render('home',{user:req.user});
+  res.render('home');
 });
 
 router.get('/fbshare',ensureAuthenticated, function(req, res, next) {
