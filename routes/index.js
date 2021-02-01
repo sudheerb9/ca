@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/home',ensureAuthenticated, function(req, res, next) {
+  console.log(req.user);
   res.render('home',{user:req.user});
 });
 
