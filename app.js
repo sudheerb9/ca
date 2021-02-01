@@ -63,9 +63,6 @@ passport.use (new FacebookStrategy({
             throw err;
         }
         if (rows && rows.length === 0) {
-          // console.log(profile.emails[0].value);
-          // console.log(profile.id);
-          // console.log(profile.displayName);
           let sql = ("INSERT into users (facebookid,photo,accesstoken,refreshtoken,name,email) VALUES('" + profile.id + "','"+profile.photos[0].value+"', '" + accessToken + "','" + refreshToken + "','" + profile.displayName + "','" + profile.emails[0].value + "');");
           conn.query(sql, function(err, result) {
             if (err) {
