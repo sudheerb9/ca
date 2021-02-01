@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser= require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('cookie-session');
 var passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
@@ -30,7 +31,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-
+app.use(session({
+  secret : "Our little Secret Here",
+  resave : false,
+  saveUninitialized : false
+}));
 //passport oauth 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -70,13 +75,13 @@ passport.use (new FacebookStrategy({
                 throw err;
 
             }
-            console.log("fb inserted");
+            console.log("Fb inserted");
           });
           
           return done(null, true);
   
         } else {
-          console.log("Error Email already exist");
+          console.log("Already logged in");
           return done(null, true);
   
         }
