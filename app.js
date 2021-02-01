@@ -31,9 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret : "Our little Secret Here",
-  resave : false,
-  saveUninitialized : false
+  secret : "Our little Secret Here"
 }));
 
 app.use('/', indexRouter);
@@ -96,6 +94,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }))
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/no', failureFlash: true }),
   function(req, res) {
+    req.user = user;
     res.redirect('/home')   
   }
 );
@@ -103,6 +102,11 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRe
 app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
+})
+
+app.get('/user', function(req, res) {
+  res.status(200);
+  console.log(req.user) // undefined
 })
 //passport oauth
 
