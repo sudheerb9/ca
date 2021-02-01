@@ -42,6 +42,7 @@ passport.serializeUser(function(user,done){
 });
 
 passport.deserializeUser(function(user, done) {
+  console.log('deserializing');
   done(null, user);
 });
   
