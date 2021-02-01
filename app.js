@@ -42,7 +42,6 @@ passport.serializeUser(function(user,done){
 });
 
 passport.deserializeUser(function(user, done) {
-  console.log('deserializing');
   done(null, user);
 });
   
@@ -53,7 +52,7 @@ passport.use (new FacebookStrategy({
       profileFields: ['id', 'displayName', 'photos', 'email']
       // clientID        : '986762757676-2pq35rlfhh2t1u17gcgliquuuq6vgfn9.apps.googleusercontent.com',
       // clientSecret    : '3Os8QiwahxzJsJNk7VhrFB4F',
-      // callbackURL     : 'http://localhost:3000/auth/facebook/callback',
+      // callbackURL     : 'http://localhost:3000/auth/google/callback',
       // userProfileURL  : 'https://www.googleapis.com/oauth2/v3/userinfo'
   },
   function(accessToken, refreshToken, profile, done) {
@@ -64,9 +63,9 @@ passport.use (new FacebookStrategy({
             throw err;
         }
         if (rows && rows.length === 0) {
-          console.log(profile.emails[0].value);
-          console.log(profile.id);
-          console.log(profile.displayName);
+          // console.log(profile.emails[0].value);
+          // console.log(profile.id);
+          // console.log(profile.displayName);
           let sql = ("INSERT into users (facebookid,photo,accesstoken,refreshtoken,name,email) VALUES('" + profile.id + "','"+profile.photos[0].value+"', '" + accessToken + "','" + refreshToken + "','" + profile.displayName + "','" + profile.emails[0].value + "');");
           conn.query(sql, function(err, result) {
             if (err) {
