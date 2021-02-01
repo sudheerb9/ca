@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
+  if (req.isAuthenticated()) { 
+    return next();
+  }
   res.redirect('/login')
 }
 /* GET home page. */
@@ -19,7 +21,7 @@ router.get('/fbshare',ensureAuthenticated, function(req, res, next) {
 });
 
 router.get('/ideate',ensureAuthenticated, function(req, res, next) {
-  res.render('ideate');
+  res.render('ideate',{user:req.user});
 });
 
 router.get('/leaderboard',ensureAuthenticated, function(req, res, next) {
