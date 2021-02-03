@@ -22,6 +22,8 @@
     <link rel="shortcut icon" href="./assets/images/favicon.png" />
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=358750151708808&autoLogAppEvents=1" nonce="aWDZWjcP"></script>
     <div class="container-scroller">
       <!-- sidebar -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -102,8 +104,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="./assets/images/faces/face15.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Sudheer Bulusu</p>
+                    <img class="img-xs rounded-circle" src='<%= participant.photo %>' alt="">
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">&nbsp;<%= participant.name %>&nbsp;</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -143,7 +145,13 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="post" style="width:500px; padding-top: 2em; display:block; margin:auto;">
-              <div class="fb-post" data-href="https://www.facebook.com/wissenaireiitbbs/posts/3644191658959896" data-width="500" data-show-text="true"></div>
+              <div class="fb-post" data-href="https://www.facebook.com/wissenaireiitbbs/posts/3644191658959896" data-width="500" data-show-text="true">
+                <!-- <blockquote cite="https://www.facebook.com/wissenaireiitbbs/posts/3644191658959896" class="fb-xfbml-parse-ignore">
+                  <p>Dust grains floating through space get bombarded by high-energy particles called cosmic rays. These rays break down...</p>
+                  Posted by <a href="https://www.facebook.com/wissenaireiitbbs/">Wissenaire, IIT Bhubaneswar</a>
+                   on&nbsp;<a href="https://www.facebook.com/wissenaireiitbbs/posts/3644191658959896">Friday, 29 January 2021</a>
+                </blockquote> -->
+              </div>              
               
               <div class="share-btn" style="width:42px; padding-top:1em; display: block; margin:auto;">
                 <button id="sharebtn3644191658959896" style="background-color: transparent; border: none; padding: 0px; font: inherit; color: inherit;">
