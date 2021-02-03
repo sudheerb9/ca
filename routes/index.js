@@ -85,4 +85,8 @@ router.get('/profile',ensureAuthenticated, function(req, res, next) {
   })
 });
 
+router.post('/addpost', function(req,res,next){
+  res.send(req.body)
+})
+
 module.exports = router;
