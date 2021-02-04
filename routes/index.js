@@ -86,7 +86,19 @@ router.get('/profile',ensureAuthenticated, function(req, res, next) {
 });
 
 router.post('/addpost', function(req,res,next){
-  res.json(req.body.postid)
+  const postins = ("INSERT into posts (postid) VALUES('" + req.body.postid + "');");
+  conn.query(postins, (err, rows) => {
+    if(err) throw err;
+    console.log(rows[0])
+  })
+  .then(function(){
+    const postadd = ("ALTER TABLE users ADD COLUMN '"+ req.body.postid +"' INT DEFAULT 0;");
+    conn.query(postadd, (err, rows) => {
+      if(err) throw err;
+      console.log(rows[0])
+      console.log('postid inserted and column added')
+    })
+  })
 })
 
 module.exports = router;
