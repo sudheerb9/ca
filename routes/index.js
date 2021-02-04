@@ -104,7 +104,7 @@ router.post('/addpost', function(req,res,next){
       if(err) throw err;
       console.log(rows)
       console.log('postid inserted and column added')
-      res.send('<p>success</p>')
+      res.sendStatus(200)
     })
   })
   
