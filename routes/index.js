@@ -84,6 +84,9 @@ router.get('/profile',ensureAuthenticated, function(req, res, next) {
     res.render('profile', {participant : rows[0]})
   })
 });
+router.get('/post', function(req,res,next){
+  res.render('addpost');
+})
 
 router.post('/addpost', function(req,res,next){
   const postins = ("INSERT into posts (postid) VALUES('" + req.body.postid + "');");
