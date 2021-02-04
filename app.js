@@ -99,7 +99,7 @@ app.get('/logout', (req, res) => {
 
 app.get('/user', function(req, res) {
   res.status(200);
-  console.log(req.user) // undefined
+  console.log(req.user) 
 })
 //passport oauth
 

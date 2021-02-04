@@ -145,11 +145,15 @@
         <!-- top -->
         <div class="main-panel">
           <div class="content-wrapper">
+            <% for(int i =0; i<posts.length; i++){
+              if(participant[posts[i].postid] == 0){
+
+             %> 
             <div class="post" style="width:500px; padding-top: 2em; display:block; margin:auto;">
-              <div class="fb-post" data-href="https://www.facebook.com/wissenaireiitbbs/posts/3644191658959896" data-width="500" data-show-text="true">
+              <div class="fb-post" data-href="https://www.facebook.com/wissenaireiitbbs/posts/<%=post[i].postid%>" data-width="500" data-show-text="true">
               </div>              
               
-              <div class="share-btn" style="width:42px; padding-top:1em; display: block; margin:auto;">
+              <div class="share-btn<%=post[i].postid%>" style="width:42px; padding-top:1em; display: block; margin:auto;">
                 <button id="sharebtn" style="background-color: transparent; border: none; padding: 0px; font: inherit; color: inherit;">
                   <svg viewBox="0 0 64 64" width="42" height="42">
                     <circle cx="32" cy="32" r="31" fill="#3b5998"></circle>
@@ -158,44 +162,51 @@
                 </button>
               </div>
 
+              <script>
+                document.getElementById('sharebtn<%=post[i].postid%>').onclick = function(e){
+                  FB.ui({
+                    method: 'share',
+                    mobile_iframe: true,
+                    href: post,
+                  }, 
+                  function(response){
+                    if (response && !response.error_message) {
+                      new swal({
+                      title: 'Post Shared',
+                      text: 'Thanks for sharing our post',
+                      icon: 'success'
+                      });
+  
+                      const Url='/increase/<%=post[i].postid%>';
+                      $.ajax({
+                          url:Url,
+                          type:"POST",
+                          success:function(result){
+                              console.log(result);
+                              document.location.reload(true);
+                          }
+                      })
+                    }   
+                    else {
+                      new swal({
+                      title: 'Error',
+                      text: 'You have not shared the post',
+                      icon: 'error'
+                      });
+                    }
+                  })  
+                }
+              </script>  
+
+            <%
+
+            }
+          }
+
+          %>
             </div>
 
-            <script>
-              document.getElementById('sharebtn').onclick = function(e){
-                console.log(post)
-                FB.ui({
-                  method: 'share',
-                  mobile_iframe: true,
-                  href: post,
-                }, 
-                function(response){
-                  if (response && !response.error_message) {
-                    new swal({
-                    title: 'Post Shared',
-                    text: 'Thanks for sharing our post',
-                    icon: 'success'
-                    });
-
-                    const Url='/increase/'+post+'';
-                    $.ajax({
-                        url:Url,
-                        type:"POST",
-                        success:function(result){
-                            console.log(result);
-                            document.location.reload(true);
-                        }
-                    })
-                  }   
-                  else {
-                    new swal({
-                    title: 'Error',
-                    text: 'You have not shared the post',
-                    icon: 'error'
-                    });
-                  }
-                })  
-              }
-            </script>  
+            
 
           </div>
           <!-- content-wrapper ends -->

@@ -35,8 +35,13 @@ router.get('/fbshare',ensureAuthenticated, function(req, res, next) {
   const qr = ("SELECT * from users where email ='" + req.user.emails[0].value + "';");
   conn.query(qr, (err, rows) => {
     if(err) throw err;
-    console.log(rows[0])
-    res.render('fbshare', {participant : rows[0]})
+    console.log(rows[0]);
+    const posts = ("SELECT * from posts;");
+    conn.query(posts, (err, result) => {
+      if(err) throw err;
+      console.log(result)
+      res.render('fbshare', {participant : rows[0], posts:result})
+    })
   })
 });
 
@@ -84,24 +89,25 @@ router.get('/profile',ensureAuthenticated, function(req, res, next) {
     res.render('profile', {participant : rows[0]})
   })
 });
+
 router.get('/post', function(req,res,next){
   res.render('addpost');
 })
 
 router.post('/addpost', function(req,res,next){
-  const postins = ("INSERT into posts (postid) VALUES('" + req.body.postid + "');");
+  const postins = ("INSERT into `posts` (postid) VALUES('" + req.body.postid + "');");
   conn.query(postins, (err, rows) => {
     if(err) throw err;
-    console.log(rows[0])
-  })
-  .then(function(){
-    const postadd = ("ALTER TABLE users ADD COLUMN '"+ req.body.postid +"' INT DEFAULT 0;");
+    console.log(rows)
+    const postadd = ("ALTER TABLE `users` ADD `"+req.body.postid+"` INT NULL DEFAULT '0' AFTER `refreshtoken`;");
     conn.query(postadd, (err, rows) => {
       if(err) throw err;
-      console.log(rows[0])
+      console.log(rows)
       console.log('postid inserted and column added')
+      res.send('<p>success</p>')
     })
   })
+  
 })
 
 module.exports = router;
