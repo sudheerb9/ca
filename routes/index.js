@@ -173,7 +173,7 @@ router.post('/addpost', function(req,res,next){
 
 router.post('/increase', function(req,res,next){
   var postid = req.body.postid;
-  var wissid = req.body.wissid
+  var wissid = req.body.wissid;
   const qr = ("SELECT * from users where wissid ='" + wissid + "';");
   conn.query(qr, (err, rows) => {
     if(err) throw err;
