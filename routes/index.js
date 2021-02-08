@@ -203,7 +203,7 @@ router.put('/wissid/:id', function(req, res,next){
 })
 
 //contact forms
-router.post('/ideate', function(req,res,next){
+router.post('/postideate', function(req,res,next){
   var field = req.body.field;
   var idea = req.body.idea;
   var wissid = req.body.wissid;
@@ -215,7 +215,7 @@ router.post('/ideate', function(req,res,next){
   })
 })
 
-router.post('/sharecon', function(req,res,next){
+router.post('/share', function(req,res,next){
   var type = req.body.type;
   var contact = req.body.contact;
   var wissid = req.body.wissid;
@@ -227,7 +227,7 @@ router.post('/sharecon', function(req,res,next){
   })
 })
 
-router.post('/contact', function(req,res,next){
+router.post('/postcontact', function(req,res,next){
   var subject = req.body.subject;
   var message = req.body.message;
   var wissid = req.body.wissid;
