@@ -176,14 +176,13 @@
                       text: 'Thanks for sharing our post',
                       icon: 'success'
                       });
-                    const wiss = '<%=participant.wissid%>';
-                    const post = '<%=posts[i].postid%>';
+
                       $.ajax({
                           url:'/increase',
                           type:"POST",
                           data: {
-                            wissid: wiss,
-                            postid: post
+                            wissid: '<%=participant.wissid%>',
+                            postid: '<%=posts[i].postid%>'
                           },
                           success:function(result){
                               console.log(result);
