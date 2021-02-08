@@ -180,7 +180,7 @@
                       const Url='/increase?wissid=<%=participant.wissid%>&postid=<%=posts[i].postid%>';
                       $.ajax({
                           url:Url,
-                          type:"POST",
+                          type:"GET",
                           success:function(result){
                               console.log(result);
                               document.location.reload(true);
