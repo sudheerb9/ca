@@ -178,7 +178,7 @@ router.post('/increase', function(req,res,next){
   conn.query(qr, (err, rows) => {
     if(err) throw err;
     var points  = rows[0].points + 10;
-    const increasepost = ("UPDATE `users` SET points = '"+points+"', '"+postid+"' = 1 WHERE wissid ='" + wissid + "';");
+    const increasepost = ("UPDATE `users` SET points = '"+points+"', "+postid+" = 1 WHERE wissid ='" + wissid + "';");
     conn.query(increasepost, (err, result)=>{
       if(err) throw err;
       console.log(result);
