@@ -165,7 +165,7 @@
                 document.getElementById('sharebtn<%=posts[i].postid%>').onclick = function(e){
                   FB.ui({
                     method: 'share',
-                    mobile_iframe: true,
+                    mobile_iframe: false,
                     href: 'https://www.facebook.com/wissenaireiitbbs/posts/<%=posts[i].postid%>',
                   }, 
                   function(response){
@@ -177,10 +177,14 @@
                       icon: 'success'
                       });
   
-                      const Url='/increase?wissid=<%=participant.wissid%>&postid=<%=posts[i].postid%>';
+                      const Url='/increase';
                       $.ajax({
                           url:Url,
-                          type:"GET",
+                          type:"POST",
+                          data: {
+                            wissid: '<%=participant.wissid%>',
+                            postid: '<%=posts[i].postid%>'
+                          },
                           success:function(result){
                               console.log(result);
                               document.location.reload(true);

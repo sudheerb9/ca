@@ -171,7 +171,7 @@ router.post('/addpost', function(req,res,next){
   })
 })
 
-router.get('/increase', function(req,res,next){
+router.post('/increase', function(req,res,next){
   var postid = req.params.postid;
   var wissid = req.params.wissid
   const qr = ("SELECT * from users where wissid ='" + wissid + "';");
