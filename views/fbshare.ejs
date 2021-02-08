@@ -177,9 +177,8 @@
                       icon: 'success'
                       });
   
-                      const Url='/increase';
                       $.ajax({
-                          url:Url,
+                          url:'/increase',
                           type:"POST",
                           data: {
                             wissid: '<%=participant.wissid%>',
