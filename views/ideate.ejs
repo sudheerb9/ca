@@ -155,7 +155,7 @@
           </div>
         </div>
         <div class="">
-          <form onsubmit="submit()">
+          <form>
           <div>
             <span class="uppercase text-sm text-gray-600 font-bold">Field</span>
             <select class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" name="field">
@@ -172,7 +172,7 @@
           </div>
           <div class="mt-8">
             <button
-              class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline" type="submit">
+              class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline" id="submit">
               Send Message
             </button>
           </div>
@@ -223,11 +223,11 @@
     <script src="./assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
     <script>
-    function submit (){
+    document.getElementById('submit').onclick = function(e){   
       var field = $("select[name=field]").val();
       var idea = $("textarea[name=idea]").val();
       $.ajax({
-          url:'/postideate',
+          url:'/ideate',
           type:"POST",
           data: {
             field: field,
@@ -236,12 +236,13 @@
           },
           success:function(result){
               console.log(result);
-              document.location.reload(true);
+              
               new swal({
                 title: 'Idea Shared',
                 text: 'Thanks for sharing your idea',
                 icon: 'success'
               });
+              document.location.reload(true);
           }
       })
     }

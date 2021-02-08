@@ -652,7 +652,7 @@
                 </div>
               </div>
               <div class="">
-                <form onsubmit="submit()">
+                <form>
                 <div class="mt-8">
                   <span class="uppercase text-sm text-gray-600 font-bold">Subject</span>
                   <input class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline" name="subject"
@@ -665,7 +665,7 @@
                 </div>
                 <div class="mt-8">
                   <button
-                    class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline" type="submit">
+                    class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline" id="submit">
                     Send Message
                   </button>
                 </div>
@@ -713,11 +713,11 @@
     <script src="./assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
     <script>
-    function submit(){
+    document.getElementById('submit').onclick = function(e){      
       var subject = $("input[name=subject]").val();
       var message = $("textarea[name=message]").val();
       $.ajax({
-          url:'/postcontact',
+          url:'/contact',
           type:"POST",
           data: {
             subject: subject,
@@ -726,12 +726,13 @@
           },
           success:function(result){
               console.log(result);
-              document.location.reload(true);
               new swal({
                 title: 'Message sent',
                 text: 'We will soon get in touch with you',
                 icon: 'success'
               });
+              document.location.reload(true);
+
           }
       })
     }
