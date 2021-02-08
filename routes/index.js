@@ -5,8 +5,8 @@ var request = require('request');
 
 const conn = mysql.createPool({
   host: "localhost",
-  user: "root",
-  password: "",
+  user: "wissenaire_sudheer",
+  password: "sudheer@wissenaire",
   database: "wissenaire_ca21"
 });
 
@@ -109,18 +109,6 @@ router.get('/profile',ensureAuthenticated, function(req, res, next) {
 });
 
 router.post('/profile',function(req,res,next) {
-  // request.post(
-  // {
-  //   url:'https://maker.ifttt.com/use/nAMtzUz7KSIrj0glp1sYmdiekK6sYJepE149usjnt4c',
-  //   json: {
-  //     key1:req.body.phone,
-  //     key2:req.body.name
-  //   },
-  //   headers: {'Content-Type': 'application/json'}
-  // },
-  // function(error, response, body){
-  //   console.log(body);
-  // });
   if(req.body.refca){
     const qr = ("UPDATE users SET wissid = '"+req.body.wissid+"', email2 ='"+req.body.email2+"', phone = '"+req.body.phone+"', gender = '"+req.body.gender+"', institute = '"+req.body.institute+"', year = '"+req.body.year+"', city = '"+req.body.city+"', whyca = '"+req.body.whyca+"' , howca = '"+req.body.howca+"' , ref = '"+req.body.refca+"' WHERE email = '"+req.user.emails[0].value+"' ;");
     conn.query(qr, (err, rows)=>{
