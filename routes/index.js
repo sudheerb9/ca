@@ -182,8 +182,7 @@ router.get('/increase', function(req,res,next){
     conn.query(increasepost, (err, result)=>{
       if(err) throw err;
       console.log(result);
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.send('callback(\'{\"msg\": \"OK\"}\')');
+      res.statusCode(200);
     })
   })
 })
