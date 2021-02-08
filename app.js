@@ -16,8 +16,8 @@ var indexRouter = require('./routes/index');
 var app = express();
 const conn = mysql.createPool({
   host: "localhost",
-  user: "root",
-  password: "",
+  user: "wissenaire_sudheer",
+  password: "sudheer@wissenaire",
   database: "wissenaire_ca21"
 });
 
