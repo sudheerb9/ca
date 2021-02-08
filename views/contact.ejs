@@ -713,6 +713,7 @@
     <script src="./assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
     <script>
+    function submit(){
       var subject = $("input[name=subject]").val();
       var message = $("textarea[name=message]").val();
       $.ajax({
@@ -733,6 +734,7 @@
               });
           }
       })
+    }
     </script>
   </body>
 </html>

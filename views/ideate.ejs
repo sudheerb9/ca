@@ -223,6 +223,7 @@
     <script src="./assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
     <script>
+    function submit (){
       var field = $("select[name=field]").val();
       var idea = $("textarea[name=idea]").val();
       $.ajax({
@@ -243,6 +244,7 @@
               });
           }
       })
+    }
     </script>
   </body>
 </html>

@@ -221,6 +221,7 @@
     <script src="./assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
     <script>
+    function submit() {
       var type = $("select[name=type]").val();
       var contact = $("input[name=contact]").val();
       $.ajax({
@@ -241,6 +242,7 @@
               });
           }
       })
+    }
     </script>
   </body>
 </html>
