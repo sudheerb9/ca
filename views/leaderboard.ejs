@@ -145,7 +145,7 @@
             <div class="row">
               <div class="col-12 col-md-5" style="margin-bottom: 30px;">
                 <div class="leaderboard_profile" style="border: 5px solid gold; border-radius: 8px;">
-                  <img src="<%=participant.photo %>" style="width: 100%;">
+                  <img src="https://graph.facebook.com/<%= participant.facebookid %>/picture?height=500" style="width: 100%;">
                   <h2 align="center" style="margin-top:0.2em"><%=participant.name %></h2>
                   <div align="center" style="margin-top:0.15em"><%=participant.wissid %></div>
                   <div align="center" style="margin-top:0.15em;">Rank: <%=participant.rank+1 %></div>
