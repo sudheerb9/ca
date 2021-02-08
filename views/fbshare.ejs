@@ -177,7 +177,7 @@
                       icon: 'success'
                       });
   
-                      const Url='/increase/<%=posts[i].postid%>';
+                      const Url='/increase?wissid=<%=participant[i].wissid%>&postid=<%=posts[i].postid%>';
                       $.ajax({
                           url:Url,
                           type:"POST",

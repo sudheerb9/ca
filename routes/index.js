@@ -171,13 +171,14 @@ router.post('/addpost', function(req,res,next){
   })
 })
 
-router.post('/increase/:id', function(req,res,next){
-  var postid = req.params.id;
-  const qr = ("SELECT * from users where email ='" + req.user.emails[0].value + "';");
+router.post('/increase', function(req,res,next){
+  var postid = req.params.postid;
+  var wissid = req.params.wissid
+  const qr = ("SELECT * from users where wissid ='" + wissid + "';");
   conn.query(qr, (err, rows) => {
     if(err) throw err;
     var points  = rows[0].points + 10;
-    const increasepost = ("UPDATE `users` SET points = '"+points+"', '"+postid+"' = 1 WHERE email ='" + req.user.emails[0].value + "';");
+    const increasepost = ("UPDATE `users` SET points = '"+points+"', '"+postid+"' = 1 WHERE wissid ='" + wissid + "';");
     conn.query(increasepost, (err, result)=>{
       if(err) throw err;
       console.log(result);
