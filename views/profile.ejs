@@ -20,6 +20,15 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="./assets/images/favicon.png" />
+    <style>
+      .form-group label{
+        font-size: 1rem;
+        padding-top:0.5rem;
+      }
+      .hidden{
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div class="container-scroller">
@@ -55,6 +64,14 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
+              <a class="nav-link" href="/sharecon">
+                <span class="menu-icon">
+                  <i class="mdi mdi-share-variant"></i>
+                </span>
+                <span class="menu-title">SHARE CONTACT</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
                 <a class="nav-link" href="/leaderboard">
                   <span class="menu-icon">
                     <i class="mdi mdi-star-circle"></i>
@@ -68,14 +85,6 @@
                     <i class="mdi mdi-account-circle"></i>
                   </span>
                   <span class="menu-title">MY PROFILE</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/activity">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-assistant"></i>
-                  </span>
-                  <span class="menu-title">MY ACTIVITY</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
@@ -96,8 +105,7 @@
           </div>
           <div class="navbar-menu-wrapper flex-row d-flex align-items-stretch">
             
-
-            <!-- top nav -->
+            <!-- top nav --> 
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
@@ -143,6 +151,155 @@
         <div class="main-panel">
           <div class="content-wrapper">
             
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h2 class="card-title">Profile</h2>
+                
+
+                <!-- filled -->
+                <% if(participant.wissid){
+                 %>
+                  <form class="forms-sample" method="POST" action="">
+                    <div class="form-group">
+                      <label for="exampleInputName1">Wissenaire ID</label>
+                      <input type="text" class="form-control form-control-lg" name="wissid" placeholder="<%=participant.wissid%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name</label>
+                      <input type="text" class="form-control form-control-lg" placeholder="<%=participant.name%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Email address</label>
+                      <input type="email" class="form-control form-control-lg" placeholder="<%=participant.email%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Alternate Email address</label>
+                      <input type="email" class="form-control form-control-lg" name="alternateemail" placeholder="<%=participant.email2%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Mobile </label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-primary text-white">+91</span>
+                        </div>
+                        <input type="number" class="form-control form-control-lg" placeholder="<%=participant.phone%>" readonly>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Gender</label>
+                      <input type="number" class="form-control form-control-lg" placeholder="<%=participant.gender%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Institute of Study</label>
+                      <input type="text" class="form-control form-control-lg" name="college" placeholder="<%=participant.institute%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Year and Branch Of Study</label>
+                      <input type="text" class="form-control form-control-lg" name="year" placeholder="<%=participant.year%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">City</label>
+                      <input type="text" class="form-control form-control-lg" name="city" placeholder="<%=participant.city%>" readonly>
+                    </div>
+                    <% if(participant.ref){ %>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Reference Id</label>
+                      <input type="text" class="form-control form-control-lg" name="ref" placeholder="<%=participant.ref%>">
+                    </div>
+                    <% } %>
+                    
+                  </form>
+                <% } %>
+
+
+                <!-- Not filled -->
+                <% if(!participant.wissid) {
+                  var wissid;
+                  if (participant.id < 10) wissid = 'W21CA000' + participant.id;
+                  else if (participant.id < 100) wissid = 'W21CA00' + participant.id;
+                  else if(participant.id < 1000) wissid = 'W21CA0' + participant.id;
+                  else wissid = 'W21CA' + participant.id;
+                %>
+                  <form class="forms-sample" method="POST" action="">
+                    <div class="form-group">
+                      <label for="exampleInputName1">Wissenaire ID</label>
+                      <input type="text" class="form-control form-control-lg" name="wissid" value="<%=wissid%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name</label>
+                      <input type="text" class="form-control form-control-lg" placeholder="<%=participant.name%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Email address</label>
+                      <input type="email" class="form-control form-control-lg" placeholder="<%=participant.email%>" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Alternate Email address</label>
+                      <input type="email" class="form-control form-control-lg" name="email2" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Mobile </label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-primary text-white">+91</span>
+                        </div>
+                        <input type="number" class="form-control form-control-lg phone" name="phone" placeholder="Mobile" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Gender</label>
+                      <select class="form-control form-control-lg" name="gender" id="exampleSelectGender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="null">Prefer, Not to say</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Institute of Study</label>
+                      <input type="text" class="form-control form-control-lg" name="institute" placeholder="Eg: IIT Bhubaneswar" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Year and Branch Of Study</label>
+                      <input type="text" class="form-control form-control-lg" name="year" placeholder="Eg: 3rd year Mechanical" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">City</label>
+                      <input type="text" class="form-control form-control-lg" name="city" placeholder="Eg: Bhubaneswar" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Why do you want to become a CA</label>
+                      <textarea class="form-control" id="exampleTextarea1" name="whyca" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleSelectGender">How do you know about Wissenaire CA program</label>
+                      <select class="form-control form-control- reg" name="howca" required>
+                        <option value="Advertisement">Advertisement</option>
+                        <option value="Web">Web</option>
+                        <option value="Through a registered CA">Through a registered CA</option>
+                        <option value="Through Wissenaire member">Through Wissenaire member</option>
+                      </select>
+                    </div>
+                    <div id="ca" class="form-group hidden">
+                      <label for="exampleInputCity1">Reference Id</label>
+                      <input type="text" class="form-control form-control-lg" name="refca" placeholder="Eg: W20CA0001">
+                    </div>
+                    <div id="roll" class="form-group hidden">
+                      <label for="exampleInputCity1">Reference Id</label>
+                      <input type="text" class="form-control form-control-lg" name="ref" placeholder="Eg: 18ME01017">
+                    </div>
+                    <div id="caname" class="form-group hidden">
+                      <label for="exampleInputCity1">Name of CA</label>
+                      <input type="text" class="form-control form-control-lg" name="nameofca" placeholder="Loading..." readonly>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-dark">Cancel</button>
+                  </form>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+
           </div>
           <!-- content-wrapper ends -->
           <!-- footer -->
@@ -178,6 +335,65 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="./assets/js/dashboard.js"></script>
+    <script>
+      $(document).ready(function(){
+        $(".reg").change(function(){
+          console.log('changed');
+          console.log($("select[name=howca]").val())
+          if($("select[name=howca]").val()=='Through a registered CA'){
+            $("#ca").removeClass("hidden");
+            $("#caname").removeClass("hidden");
+            if(!$("#roll").hasClass("hidden")) $("#roll").addClass("hidden");
+          }  
+          else if ($("select[name=howca]").val()=='Through Wissenaire member' ){
+            $("#roll").removeClass("hidden");
+            if(!$("#ca").hasClass("hidden")){
+              $("#ca").addClass("hidden");
+              $("#caname").addClass("hidden");
+            }
+          } 
+          else {
+            if(!$("#ca").hasClass("hidden")){
+              $("#ca").addClass("hidden");
+              $("#caname").addClass("hidden");
+            } 
+            if(!$("#roll").hasClass("hidden")) $("#roll").addClass("hidden");
+          }
+        })
+        console.log('phone');
+        $(".phone").blur(function(e){
+            phone = $(this).val();
+            phone = phone.replace(/[^0-9]/g,'');
+            if (phone.length != 10)
+            {
+              alert('Enter a valid Phone no.');
+              $(".phone").addClass("is-invalid");
+              $(".phone").removeClass("is-valid");
+            }
+            else {
+              $(".phone").addClass("is-valid");
+              $(".phone").removeClass("is-invalid");
+            }
+            
+        });
+
+        $("input[name=refca]").blur(function(e){
+          console.log('blur')
+            var wissid = $(this).val();
+            const urL = 'http://localhost:3000/wissid/'+ wissid;
+            $.ajax({
+              url: urL,
+              type:"PUT",
+              success:function(result){
+                  console.log(result.name);
+                  $('input[name=nameofca]').val(result.name);
+              }
+            })
+        })
+      })
+
+
+    </script>
     <!-- End custom js for this page -->
   </body>
 </html>

@@ -55,6 +55,14 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
+              <a class="nav-link" href="/sharecon">
+                <span class="menu-icon">
+                  <i class="mdi mdi-share-variant"></i>
+                </span>
+                <span class="menu-title">SHARE CONTACT</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
                 <a class="nav-link" href="/leaderboard">
                   <span class="menu-icon">
                     <i class="mdi mdi-star-circle"></i>
@@ -68,14 +76,6 @@
                     <i class="mdi mdi-account-circle"></i>
                   </span>
                   <span class="menu-title">MY PROFILE</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/activity">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-assistant"></i>
-                  </span>
-                  <span class="menu-title">MY ACTIVITY</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
@@ -142,7 +142,57 @@
         <!-- top -->
         <div class="main-panel">
           <div class="content-wrapper">
-            
+            <div class="row">
+              <div class="col-12 col-md-5" style="margin-bottom: 30px;">
+                <div class="leaderboard_profile" style="border: 5px solid gold; border-radius: 8px;">
+                  <img src="<%=participant.photo %>" style="width: 100%;">
+                  <h2 align="center" style="margin-top:0.2em"><%=participant.name %></h2>
+                  <div align="center" style="margin-top:0.15em"><%=participant.wissid %></div>
+                  <div align="center" style="margin-top:0.15em;">Rank: <%=participant.rank+1 %></div>
+                  <div align="center" style="margin-top:0.15em; margin-bottom: 0.2em;">Points :
+                    <span style="color: rgb(255, 215, 0);"><%=participant.points %></span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-12 col-md-7" style="margin-bottom: 30px;">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between border-bottom">
+                      <h2 class="card-title mb-2">Leaderboard</h2>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="preview-list">
+                      <% for(var i=0; i<leaderboard.length; i++){
+                        %>
+                          <div class="preview-item mt-2">
+                            <div class="preview-thumbnail">
+                              <div class="preview-icon">
+                                <img src="./images/badge<%=i+1%>.png">
+                              </div>
+                            </div>
+                            <div class="preview-item-content d-sm-flex flex-grow">
+                              <div style="padding-right:1.4rem ; display: block; margin-top: auto;">
+                                <h4 class=""><%=leaderboard[i].wissid %></h4>
+                              </div>
+                              <div class="flex-grow">
+                                <h4 class="preview-subject"><%=leaderboard[i].name %></h4>
+                                <p class="text-muted mb-0"><%=leaderboard[i].institute %></p>
+                              </div>
+                              <div class="text-sm-right" style="display: block; margin-top: auto;">
+                                <h5><%=leaderboard[i].points %></h5>
+                              </div>
+                            </div>
+                          </div>
+                        <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- footer -->

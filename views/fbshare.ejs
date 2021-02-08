@@ -58,6 +58,14 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
+              <a class="nav-link" href="/sharecon">
+                <span class="menu-icon">
+                  <i class="mdi mdi-share-variant"></i>
+                </span>
+                <span class="menu-title">SHARE CONTACT</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
                 <a class="nav-link" href="/leaderboard">
                   <span class="menu-icon">
                     <i class="mdi mdi-star-circle"></i>
@@ -71,14 +79,6 @@
                     <i class="mdi mdi-account-circle"></i>
                   </span>
                   <span class="menu-title">MY PROFILE</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/activity">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-assistant"></i>
-                  </span>
-                  <span class="menu-title">MY ACTIVITY</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
@@ -145,16 +145,15 @@
         <!-- top -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <% for(int i =0; i<posts.length; i++){
+            <% for(var i =0; i<posts.length; i++){
               if(participant[posts[i].postid] == 0){
-
              %> 
             <div class="post" style="width:500px; padding-top: 2em; display:block; margin:auto;">
-              <div class="fb-post" data-href="https://www.facebook.com/wissenaireiitbbs/posts/<%=post[i].postid%>" data-width="500" data-show-text="true">
+              <div class="fb-post" data-href="https://www.facebook.com/wissenaireiitbbs/posts/<%=posts[i].postid%>" data-width="500" data-show-text="true">
               </div>              
               
-              <div class="share-btn<%=post[i].postid%>" style="width:42px; padding-top:1em; display: block; margin:auto;">
-                <button id="sharebtn" style="background-color: transparent; border: none; padding: 0px; font: inherit; color: inherit;">
+              <div class="share-btn" style="width:42px; padding-top:1em; display: block; margin:auto;">
+                <button id="sharebtn<%=posts[i].postid%>" style="background-color: transparent; border: none; padding: 0px; font: inherit; color: inherit;">
                   <svg viewBox="0 0 64 64" width="42" height="42">
                     <circle cx="32" cy="32" r="31" fill="#3b5998"></circle>
                     <path d="M34.1,47V33.3h4.6l0.7-5.3h-5.3v-3.4c0-1.5,0.4-2.6,2.6-2.6l2.8,0v-4.8c-0.5-0.1-2.2-0.2-4.1-0.2 c-4.1,0-6.9,2.5-6.9,7V28H24v5.3h4.6V47H34.1z" fill="white"></path>
@@ -163,13 +162,14 @@
               </div>
 
               <script>
-                document.getElementById('sharebtn<%=post[i].postid%>').onclick = function(e){
+                document.getElementById('sharebtn<%=posts[i].postid%>').onclick = function(e){
                   FB.ui({
                     method: 'share',
                     mobile_iframe: true,
-                    href: post,
+                    href: 'https://www.facebook.com/wissenaireiitbbs/posts/<%=posts[i].postid%>',
                   }, 
                   function(response){
+                    console.log(response);
                     if (response && !response.error_message) {
                       new swal({
                       title: 'Post Shared',
@@ -177,7 +177,7 @@
                       icon: 'success'
                       });
   
-                      const Url='/increase/<%=post[i].postid%>';
+                      const Url='/increase/<%=posts[i].postid%>';
                       $.ajax({
                           url:Url,
                           type:"POST",
@@ -225,6 +225,8 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="./assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

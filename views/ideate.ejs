@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="./assets/images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
   </head>
   <body>
     <div class="container-scroller">
@@ -55,6 +56,14 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
+              <a class="nav-link" href="/sharecon">
+                <span class="menu-icon">
+                  <i class="mdi mdi-share-variant"></i>
+                </span>
+                <span class="menu-title">SHARE CONTACT</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
                 <a class="nav-link" href="/leaderboard">
                   <span class="menu-icon">
                     <i class="mdi mdi-star-circle"></i>
@@ -71,14 +80,6 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/activity">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-assistant"></i>
-                  </span>
-                  <span class="menu-title">MY ACTIVITY</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
                 <a class="nav-link" href="/contact">
                   <span class="menu-icon">
                     <i class="mdi mdi-forum"></i>
@@ -92,7 +93,7 @@
       <div class="container-fluid page-body-wrapper">
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center" style="width: auto;">
-            <a class="navbar-brand" href="/home"><img src="./assets/images/logo-mini.png" height="42px" alt="logo" /></a>
+            <a class="navbar-brand" href="/home"><img src="./assets/images/logo-mini.png" style="height: 42px;" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper flex-row d-flex align-items-stretch">
             
@@ -143,6 +144,46 @@
         <div class="main-panel">
           <div class="content-wrapper">
             
+
+      <div class="max-w-screen-xl mt-12 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 mx-auto rounded-lg shadow-lg">
+        <div class="flex flex-col justify-between">
+          <div>
+            <h2 class="text-4xl lg:text-5xl font-bold leading-tight">Share your brains !</h2>
+            <img src="./assets/images/ideate.png" style="width: 100%;">
+          </div>
+          <div class="mt-8 text-center">
+            
+          </div>
+        </div>
+        <div class="">
+          <div>
+            <span class="uppercase text-sm text-gray-600 font-bold">Field</span>
+            <select class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline">
+              <option value="Publicity">Publicity</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Events">Events and Management</option>
+            </select>
+          </div>
+          
+          <div class="mt-8">
+            <span class="uppercase text-sm text-gray-600 font-bold">Idea</span>
+            <textarea
+              class="w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></textarea>
+          </div>
+          <div class="mt-8">
+            <button
+              class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
+              Send Message
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
           </div>
           <!-- content-wrapper ends -->
           <!-- footer -->

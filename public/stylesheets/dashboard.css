@@ -17708,7 +17708,6 @@ div.tagsinput {
     .preview-list .preview-item .preview-thumbnail img,
     .preview-list .preview-item .preview-thumbnail .preview-icon {
       width: 40px;
-      height: 40px;
       text-align: center;
       display: -webkit-flex;
       display: flex;

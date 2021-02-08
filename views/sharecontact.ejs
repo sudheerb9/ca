@@ -18,6 +18,7 @@
 
     <!-- Layout styles -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="./assets/images/favicon.png" />
   </head>
@@ -55,6 +56,14 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
+              <a class="nav-link" href="/sharecon">
+                <span class="menu-icon">
+                  <i class="mdi mdi-share-variant"></i>
+                </span>
+                <span class="menu-title">SHARE CONTACT</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
                 <a class="nav-link" href="/leaderboard">
                   <span class="menu-icon">
                     <i class="mdi mdi-star-circle"></i>
@@ -68,14 +77,6 @@
                     <i class="mdi mdi-account-circle"></i>
                   </span>
                   <span class="menu-title">MY PROFILE</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/activity">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-assistant"></i>
-                  </span>
-                  <span class="menu-title">MY ACTIVITY</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
@@ -143,6 +144,43 @@
         <div class="main-panel">
           <div class="content-wrapper">
             
+
+            <div class="max-w-screen-xl mt-12 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 mx-auto rounded-lg shadow-lg">
+              <div class="flex flex-col justify-between">
+                <div>
+                  <h2 class="text-4xl lg:text-5xl font-bold leading-tight"></h2>
+                  <img src="./assets/images/share.png">
+                </div>
+                <div class="mt-8 text-center">
+                  
+                </div>
+              </div>
+              <div class="">
+                <div>
+                  <span class="uppercase text-sm text-gray-600 font-bold">Type</span>
+                  <select class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline">
+                    <option value="Participant">Participant</option>
+                    <option value="Publicity">Publicity partner</option>
+                    <option value="Marketing">Marketing partner</option>
+                    <option value="Events">Events partner</option>
+                  </select>
+                </div>
+                
+                <div class="mt-8">
+                  <span class="uppercase text-sm text-gray-600 font-bold">Contact</span>
+                  <input
+                    class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></input>
+                </div>
+                <div class="mt-8">
+                  <button
+                    class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
+                    Share Contact
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
           </div>
           <!-- content-wrapper ends -->
           <!-- footer -->
