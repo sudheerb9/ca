@@ -108,6 +108,7 @@ router.get('/profile',ensureAuthenticated, function(req, res, next) {
   })
 });
 
+//profile filling
 router.post('/profile',function(req,res,next) {
   if(req.body.refca){
     const qr = ("UPDATE users SET wissid = '"+req.body.wissid+"', email2 ='"+req.body.email2+"', phone = '"+req.body.phone+"', gender = '"+req.body.gender+"', institute = '"+req.body.institute+"', year = '"+req.body.year+"', city = '"+req.body.city+"', whyca = '"+req.body.whyca+"' , howca = '"+req.body.howca+"' , ref = '"+req.body.refca+"' WHERE email = '"+req.user.emails[0].value+"' ;");
@@ -152,6 +153,7 @@ router.post('/profile',function(req,res,next) {
   }
 })
 
+//add post
 router.get('/post', function(req,res,next){
   res.render('addpost');
 })
@@ -171,6 +173,7 @@ router.post('/addpost', function(req,res,next){
   })
 })
 
+//increase points after sharing a post
 router.post('/increase', function(req,res,next){
   var postid = req.body.postid;
   var wissid = req.body.wissid;
@@ -187,6 +190,7 @@ router.post('/increase', function(req,res,next){
   })
 })
 
+//generate name from wissid in profile page
 router.put('/wissid/:id', function(req, res,next){
   var wissid = req.params.id;
   console.log('id'+wissid)
@@ -195,6 +199,43 @@ router.put('/wissid/:id', function(req, res,next){
     if(err) throw err;
     console.log(result);
     res.send(result[0]);
+  })
+})
+
+//contact forms
+router.post('/ideate', function(req,res,next){
+  var field = req.body.field;
+  var idea = req.body.idea;
+  var wissid = req.body.wissid;
+  const qr = ("INSERT into `ideate` (field, idea, user_id) VALUES('" + field + "', '" + idea + "','" + wissid + "');");
+  conn.query(qr, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.sendStatus(200);
+  })
+})
+
+router.post('/sharecon', function(req,res,next){
+  var type = req.body.type;
+  var contact = req.body.contact;
+  var wissid = req.body.wissid;
+  const qr = ("INSERT into `sharecon` (type, contact, user_id) VALUES('" + type + "', '" + contact + "','" + wissid + "');");
+  conn.query(qr, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.sendStatus(200);
+  })
+})
+
+router.post('/contact', function(req,res,next){
+  var subject = req.body.subject;
+  var message = req.body.message;
+  var wissid = req.body.wissid;
+  const qr = ("INSERT into `contact` (subject, message, user_id) VALUES('" + subject + "', '" + message + "','" + wissid + "');");
+  conn.query(qr, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.sendStatus(200);
   })
 })
 
