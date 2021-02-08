@@ -5,8 +5,8 @@ var request = require('request');
 
 const conn = mysql.createPool({
   host: "localhost",
-  user: "wissenaire_sudheer",
-  password: "sudheer@wissenaire",
+  user: "root",
+  password: "",
   database: "wissenaire_ca21"
 });
 
@@ -178,11 +178,11 @@ router.post('/increase', function(req,res,next){
   conn.query(qr, (err, rows) => {
     if(err) throw err;
     var points  = rows[0].points + 10;
-    const increasepost = ("UPDATE `users` SET points = '"+points+"', "+postid+" = 1 WHERE wissid ='" + wissid + "';");
+    const increasepost = ("UPDATE `users` SET `points` = '"+points+"', `"+postid+"` = 1 WHERE `wissid` ='"+ wissid +"';");
     conn.query(increasepost, (err, result)=>{
       if(err) throw err;
       console.log(result);
-      res.statusCode(200);
+      res.sendStatus(200);
     })
   })
 })
