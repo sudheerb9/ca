@@ -1,0 +1,69 @@
+// Variables
+
+  .type1{
+    color: white;
+    }
+    .type1::after,
+    .type1::before{
+      content: '';
+      display: block;
+      position: absolute;
+      width: 15%;
+      height: 20%;
+      border: 2px solid;
+      transition: all 0.6s ease;
+      border-radius: 2px;
+}
+    .type1::after{
+      bottom: 0;
+      right: 0;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-bottom-color: white;
+      border-right-color: white;
+}
+    .type1::before{
+      top: 0;
+      left: 0;
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+      border-top-color: white;
+      border-left-color: white;
+}
+    .type1:hover:after,
+    .type1:hover:before{
+      width: 100%;
+      height: 100%;
+   }
+ .city{
+  position: relative;
+  padding: 1em 1.5em;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  font-size: 18px;
+  margin: 1em 0.8em;
+  color: white;
+  width: 200px;
+  
+  }
+  .city:hover{
+    color: white;
+  }
+  .cityone{
+    display: none;
+  } 
+  .citytwo{
+    display: none;
+  }
+  .citythree{
+    display: none;
+  } 
+  .cityfour{
+    display: none;
+  } 
+  .cityfive{
+    display: none;
+  }
+  
