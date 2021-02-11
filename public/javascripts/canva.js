@@ -9,7 +9,7 @@ let particlesArray;
 let mouse = {
     x: null,
     y: null,
-    radius: (canvas.height/80) * (canvas.width/80)
+    radius: (canvas.height/1000) * (canvas.width/1000)
 }
 
 window.addEventListener('mousemove',
@@ -33,7 +33,7 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = '#8C5523';
+        ctx.fillStyle = '#fff';
         ctx.fill();
     }
     // check particle position, check mouse position, move the particle, draw the particle
@@ -76,14 +76,14 @@ class Particle {
 // create particle array
 function init() {
     particlesArray = [];
-    let numberOfParticles = (canvas.height * canvas.width) / 9000;
+    let numberOfParticles = (canvas.height * canvas.width) / 10000;
     for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 5) + 1;
+        let size = (Math.random() * 1) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 5) - 2.5;
         let directionY = (Math.random() * 5) - 2.5;
-        let color = '#8C5523';
+        let color = '#f00';
 
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
@@ -102,9 +102,9 @@ function connect(){
                 let dy = mouse.y - particlesArray[a].y;
                 let mouseDistance = Math.sqrt(dx*dx+dy*dy);
                 if (mouseDistance < 180) {
-                  ctx.strokeStyle='rgba(255,0,0,' + opacityValue + ')';
+                  ctx.strokeStyle='rgba(0,0,255,' + opacityValue + ')';
                 } else {
-                ctx.strokeStyle='rgba(0,0,255,' + opacityValue + ')';
+                ctx.strokeStyle='rgba(255,255,255,0.2)';
                 }
                 ctx.lineWidth = 1;
                 ctx.beginPath();
@@ -113,7 +113,7 @@ function connect(){
                 ctx.stroke();
               
                 ctx.lineWidth = 1;
-              ctx.strokeStyle = 'rgba(255,255,0,0.03)';
+              ctx.strokeStyle = 'rgba(0,0,0,0.04)';
                  ctx.beginPath();
                 ctx.moveTo(mouse.x, mouse.y);
                 ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
@@ -138,7 +138,7 @@ window.addEventListener('resize',
     function(){
         canvas.width = innerWidth;
         canvas.height = innerHeight;
-        mouse.radius = ((canvas.height/80) * (canvas.height/80));
+        mouse.radius = ((canvas.height/10000) * (canvas.height/10000));
         init();
     }
 );

@@ -29,7 +29,7 @@ function ensureProfile(req,res,next){
 }
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index1');
+  res.render('index');
 });
 
 router.get('/home',ensureAuthenticated, ensureProfile, async function(req, res, next) {

@@ -1,0 +1,133 @@
+html, body, .container {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.container {
+  /*padding:150px;*/
+  background: #2F2F31;
+}
+
+#navMenu {
+  top: 150px;
+  left: 200px;
+  width: 140px;
+  height: 140px;
+  z-index: 100;
+  background: linear-gradient(90deg, #910EC9, #d350db, #910EC9);
+  -webkit-background: linear-gradient(90deg, #910EC9, #d350db, #910EC9);
+  background-size: 400% 400%;
+  -webkit-background-size: 400% 400%;
+  animation: gradient 5s infinite;
+  -webkit-animation: gradient 5s infinite;
+}
+
+#navMenu:hover, .nav:hover {
+  background: #d350db;
+}
+
+@keyframes gradient {
+  50% {
+    background-position: 100% 0;
+  }
+}
+@-webkit-keyframes gradient {
+  50% {
+    background-position: 100% 0;
+  }
+}
+
+.diamond {
+  position: absolute;
+  width: 67.5px;
+  height: 67.5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  background: #910EC9;
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 1px 4px 10px #101010;
+}
+
+.diamond:active {
+  background: #710b9e;
+  box-shadow: 0px 1px 2.5px #101010;
+  transition: 0.1s;
+  -webkit-transition: 0.1s;
+}
+
+/*.popUp{
+  text-align:center;
+  border-radius:10px 0px;
+  position:absolute;
+  top:100px;
+  left:330px;
+  overflow:hidden;
+  background:red;
+  width:0px;
+  max-width:100px;
+}
+
+.#nav1:hover + .popUp{
+  width:100px;
+}*/
+
+.nav {
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+}
+
+.nav1 {
+  top: 86px;
+  left: 287px;
+}
+
+.nav2 {
+  top: 136px;
+  left: 337px;
+}
+
+.nav3 {
+  top: 186px;
+  left: 387px;
+}
+
+.nav4 {
+  top: 236px;
+  left: 337px;
+}
+
+.nav5 {
+  top: 286px;
+  left: 287px;
+}
+
+.small {
+  top: 186px;
+  left: 236px;
+  z-index: 10;
+  background: #643fc1;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+}
+
+.rotCorrect {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  margin-left: 14px;
+  margin-top: 8px;
+}
+
+#mainRotCorrect {
+  margin-left: 26px;
+  margin-top: 28px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  max-width: 90px;
+}
+
+i {
+  color: #EEEEEE;
+}

@@ -57,7 +57,7 @@ nav.nav-open {
  .menu-btn .line.line--1.line-cross {
     width: 30px;
     transform: rotate(45deg) translateY(10px);
-   background: rgba(0,0,0,0.6);
+   /* background: rgba(0,0,0,0.6); */
 }
 
 .menu-btn .line.line--2 {
@@ -79,7 +79,7 @@ nav.nav-open {
  .menu-btn .line.line--3.line-cross {
     width: 30px;
     transform: rotate(-45deg) translateY(-10px);
-   background: rgba(0,0,0,0.6);
+   /* background: rgba(0,0,0,0.6); */
 }
 
 nav .nav-links {
@@ -103,10 +103,11 @@ nav .nav-links.fade-in {
 }
 
 nav .nav-links .link {
+    
     margin: 20px 0;
     text-decoration: none;
     font-family: sans-serif;
-    color: rgba(0,0,0,0.9);
+    color: #fff;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 1.2rem;
@@ -120,7 +121,7 @@ nav .nav-links .link:hover {
 
 .inform{
   position: absolute;
-  top: 57%;
+  top: 50%;
   left:50%;
   transform: translate(-50%, -50%);
   color: rgba(255, 255, 255, 0.8);
@@ -134,8 +135,7 @@ nav .nav-links .link:hover {
 .support{
   position: absolute;
   left:38%;
-  right: 10px;
-  bottom: 10px;
+  bottom: 20%;
   padding: 10px;
   display: flex;
 }
@@ -153,6 +153,7 @@ a:hover{
 @media screen and (max-width: 425px) {
   nav {
     width: 100vw;
+
   }
 }
 
@@ -165,7 +166,7 @@ a:hover{
 @media screen and (max-width: 425px) {
   .support {
     position: absolute;
-    left: 15%;
+    left: 13%;
   }
 }
 
