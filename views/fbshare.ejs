@@ -172,7 +172,7 @@
                   FB.ui({
                     method: 'share',
                     mobile_iframe: true,
-                    href: 'https://www.facebook.com/dialog/share?app_id=145634995501895&display=popup&href=https%3A%2F%2Fwww.facebook.com%2Fwissenaireiitbbs%2Fposts%2F3661919283853800&redirect_uri=https%3A%2F%2Fca21.wissenaire.org%2Ffbshare',
+                    href: 'https://www.facebook.com/dialog/share?app_id=145634995501895&display=popup&href=https%3A%2F%2Fwww.facebook.com%2Fwissenaireiitbbs%2Fposts%<%=posts[i].postid%>&fallback_redirect_uri=https%3A%2F%2Fca21.wissenaire.org%2Ffbshare',
                   }, 
                   function(response){
                     console.log(response);
