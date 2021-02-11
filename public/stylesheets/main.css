@@ -312,7 +312,7 @@ dfn[title] {
 }
 
 mark {
-  background: #ffd900;
+  background: #f00;
   color: #000000;
 }
 
@@ -502,7 +502,7 @@ form,
 }
 
 .pace .pace-progress {
-  background: #f9a828;
+  background: #ff0000;
   position: fixed;
   z-index: 900;
   top: 0;
@@ -1414,7 +1414,7 @@ input::-moz-focus-inner {
   display: inline-block;
   font-family: "metropolis-regular", sans-serif;
   letter-spacing: 0;
-  background-color: #f9a828;
+  background-color: #f00;
   color: #FFFFFF;
   padding: 9px 12px;
   bottom: 1.3em;
@@ -1424,7 +1424,7 @@ input::-moz-focus-inner {
   display: block;
   width: 1px;
   height: 12rem;
-  background-color: #f9a828;
+  background-color: #f00;
   position: absolute;
   right: 84px;
   bottom: 0;
@@ -2579,7 +2579,7 @@ footer h4.h05::after {
   top: 0;
 }
 .footer-main button:hover {
-  background-color: #f89e0f;
+  background-color: #f00;
 }
 .footer-main button i {
   font-size: 2.6rem;

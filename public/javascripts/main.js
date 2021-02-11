@@ -52,7 +52,8 @@
     var ssInfoToggle = function() {
 
         //open/close lateral navigation
-        $('.one').on('click', function(event) {
+         //open/close lateral navigation
+         $('.one').on('click', function(event) {
             event.preventDefault();
             $('body').toggleClass('info-is-visible');
             $('.info-toggle').css('display','block');
