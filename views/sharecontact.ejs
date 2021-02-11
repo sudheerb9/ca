@@ -224,6 +224,7 @@
     document.getElementById('submit').onclick = function(e){   
       var type = $("select[name=type]").val();
       var contact = $("input[name=contact]").val();
+      if(type && contact)
       $.ajax({
           url:'/sharecon',
           type:"POST",

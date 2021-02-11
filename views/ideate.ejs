@@ -226,6 +226,7 @@
     document.getElementById('submit').onclick = function(e){   
       var field = $("select[name=field]").val();
       var idea = $("textarea[name=idea]").val();
+      if(field && idea)
       $.ajax({
           url:'/ideate',
           type:"POST",

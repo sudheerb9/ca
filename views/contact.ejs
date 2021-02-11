@@ -716,6 +716,7 @@
     document.getElementById('submit').onclick = function(e){      
       var subject = $("input[name=subject]").val();
       var message = $("textarea[name=message]").val();
+      if(subject && message)
       $.ajax({
           url:'/contact',
           type:"POST",
