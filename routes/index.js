@@ -120,7 +120,7 @@ router.post('/profile',function(req,res,next) {
         if(err) throw err;
         if(data) {
           console.log(data[0].points);
-          var points = data[0].points + 25;
+          var points = data[0].points + 15;
           const update = ("UPDATE `users` SET points = '"+points+"' WHERE wissid = '"+req.body.refca+"';");
           conn.query(update, (err,result)=>{
             if (err) throw err;
