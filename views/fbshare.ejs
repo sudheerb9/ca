@@ -205,7 +205,42 @@
                     }
                   })  
                 }
-              </script>  
+
+                
+              </script> 
+              <script>
+                function ok (response){
+                    console.log(response);
+                    if (response && !response.error_message) {
+                      new swal({
+                      title: 'Post Shared',
+                      text: 'Thanks for sharing our post',
+                      icon: 'success'
+                      });
+
+                      $.ajax({
+                          url:'/increase',
+                          type:"POST",
+                          data: {
+                            wissid: '<%=participant.wissid%>',
+                            postid: '<%=posts[i].postid%>'
+                          },
+                          success:function(result){
+                              console.log(result);
+                              document.location.reload(true);
+                          }
+                      })
+                    }   
+                    else {
+                      new swal({
+                      title: 'Error',
+                      text: 'You have not shared the post',
+                      icon: 'error'
+                      });
+                    }
+                  }
+                  ok();
+              </script> 
 
             <%
 
