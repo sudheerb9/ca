@@ -167,6 +167,7 @@ a:hover{
   .support {
     position: absolute;
     left: 13%;
+    z-index: -10;
   }
 }
 
