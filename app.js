@@ -30,6 +30,10 @@ app.use(session({ secret: 'keyboard cat', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
+app.use (function (req, res, next) {
+  if (req.secure) next();
+  else  res.redirect('https://' + req.headers.host + req.url);
+});
 
 app.use('/', indexRouter);
 
@@ -79,10 +83,6 @@ passport.use (new FacebookStrategy({
     }) 
   })
 );
-
-app.get('*', function(req, res) {  
-  res.redirect('https://' + req.headers.host + req.url);
-})
 
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
