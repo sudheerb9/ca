@@ -30,10 +30,11 @@ app.use(session({ secret: 'keyboard cat', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
-app.get('*', function(req, res) {  
-  res.redirect('https://' + req.headers.host + req.url);
-});
-
+app.all('*', ensureSecure);
+function ensureSecure(req, res, next){
+  if(req.secure) return next();
+  res.redirect('https://' + req.hostname + req.url);
+}
 app.use('/', indexRouter);
 
 //passport oauth 
