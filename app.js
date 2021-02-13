@@ -10,7 +10,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
 require('./config/config');
-// var httpsRedirect = require('express-https-redirect');
+var httpsRedirect = require('express-https-redirect');
 
 var indexRouter = require('./routes/index');
 
@@ -27,7 +27,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(redirectToHTTPS([/\/insecure/]));
 app.use(session({ secret: 'keyboard cat', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
