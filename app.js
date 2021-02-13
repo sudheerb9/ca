@@ -33,7 +33,7 @@ app.use(express.static(__dirname + '/public'));
 app.all('*', ensureSecure);
 function ensureSecure(req, res, next){
   if(req.secure) return next();
-  res.redirect('https://' + req.hostname + req.url);
+  else res.redirect('https://' + req.hostname + req.url);
 }
 app.use('/', indexRouter);
 
