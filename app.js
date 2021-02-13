@@ -10,7 +10,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
 require('./config/config');
-var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+var httpsRedirect = require('express-https-redirect');
 
 var indexRouter = require('./routes/index');
 
@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-app.use('/', indexRouter);
+app.use('/', indexRouter, httpsRedirect(true));
 
 //passport oauth 
 app.use(passport.initialize());
