@@ -10,10 +10,8 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
 require('./config/config');
-// var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
- 
-// app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
- 
+var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+
 var indexRouter = require('./routes/index');
 
 var app = express();
@@ -33,6 +31,7 @@ app.use(session({ secret: 'keyboard cat', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
+app.use(redirectToHTTPS(ignoreHosts, ignoreRoutes));
 
 app.use('/', indexRouter);
 
