@@ -10,7 +10,10 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
 require('./config/config');
-
+var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+ 
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
+ 
 var indexRouter = require('./routes/index');
 
 var app = express();
