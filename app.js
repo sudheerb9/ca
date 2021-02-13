@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-app.use('/', indexRouter, httpsRedirect(true));
+app.use('/', indexRouter);
 
 //passport oauth 
 app.use(passport.initialize());
