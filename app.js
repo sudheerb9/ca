@@ -31,7 +31,7 @@ app.use(session({ secret: 'keyboard cat', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
-app.use(redirectToHTTPS(ignoreHosts, ignoreRoutes));
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 app.use('/', indexRouter);
 
