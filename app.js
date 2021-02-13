@@ -10,7 +10,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
 require('./config/config');
-var httpsRedirect = require('express-https-redirect');
+// var httpsRedirect = require('express-https-redirect');
 
 var indexRouter = require('./routes/index');
 
