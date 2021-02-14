@@ -2165,8 +2165,8 @@ html.no-csstransitions .home-content__main {
  * ------------------------------------------------------------------- */
 .info-toggle {
   z-index: 502;
-  background-color: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  /* background-color: #000000; */
+  /* border: 1px solid rgba(255, 255, 255, 0.12); */
   font-family: "metropolis-medium", sans-serif;
   font-size: 12px;
   text-transform: uppercase;
@@ -2212,7 +2212,7 @@ html.no-csstransitions .home-content__main {
   top: 50%;
   right: auto;
   bottom: auto;
-  background-color: #ff0000;
+  background-color: #0000ff;
   -webkit-transition: background 0.2s ease-in-out;
   transition: background 0.2s ease-in-out;
 }
