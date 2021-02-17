@@ -21127,4 +21127,8 @@ div.tagsinput {
   -webkit-flex-grow: 1;
   flex-grow: 1; }
 
+.footer a{
+  color: #ff0000;
+}
+
 /*# sourceMappingURL=maps/style.css.map */
