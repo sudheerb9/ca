@@ -104,7 +104,7 @@ function connect(){
                 if (mouseDistance < 180) {
                   ctx.strokeStyle='rgba(255,0,0,' + opacityValue + ')';
                 } else {
-                ctx.strokeStyle='rgba(0,0,255,' + opacityValue + ')';
+                ctx.strokeStyle='rgba(255,0,0,' + opacityValue + ')';
                 }
                 ctx.lineWidth = 1;
                 ctx.beginPath();
