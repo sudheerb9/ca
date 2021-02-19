@@ -102,7 +102,7 @@ function connect(){
                 let dy = mouse.y - particlesArray[a].y;
                 let mouseDistance = Math.sqrt(dx*dx+dy*dy);
                 if (mouseDistance < 180) {
-                  ctx.strokeStyle='rgba(0,0,255,' + opacityValue + ')';
+                  ctx.strokeStyle='rgba(255,0,0,' + opacityValue + ')';
                 } else {
                 ctx.strokeStyle='rgba(255,255,255,0.2)';
                 }
