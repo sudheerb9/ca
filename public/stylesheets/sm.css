@@ -159,8 +159,8 @@ a:hover{
 
 @media screen and (max-width: 768px) {
   .support {
-    display: block;
-    margin: auto;
+    position: absolute;
+    left: 30%;
   }
 }
 @media screen and (max-width: 425px) {
@@ -172,7 +172,7 @@ a:hover{
 
 @media screen and (max-width: 320px) {
   .support {
-    position: absolute;
-    left: 5%;
+    display: block;
+    margin: auto;
   }
 }
