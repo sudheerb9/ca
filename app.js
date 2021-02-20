@@ -49,7 +49,7 @@ passport.deserializeUser(function(user, done) {
 passport.use (new FacebookStrategy({
       clientID: '1874655192687215',
       clientSecret: '79c493bdff6b73ef842c2aac5b2980b8',
-      callbackURL: "https://ca21.wissenaire.org/auth/facebook/callback",
+      callbackURL: "https://ca.wissenaire.org/auth/facebook/callback",
       profileFields: ['id', 'displayName', 'photos', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
