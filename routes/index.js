@@ -149,6 +149,7 @@ router.post('/profile',function(req,res,next) {
   }
 
   const phone = req.body.phone;
+  console.log(phone)
   const output = `<p>Hi ${req.body.name}, You are registered as a CA of Wissenaire'21 with CA id ${req.body.wissid}</p>`;
   var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -157,6 +158,8 @@ router.post('/profile',function(req,res,next) {
       pass: 'sudheer@7675974963'
     }
   });
+  console.log(output);
+  console.log('transporter');
   
   var mailOptions = {
     from: 'sudheer.wissenaire@gmail.com',
