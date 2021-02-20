@@ -173,9 +173,10 @@ router.post('/profile',function(req,res,next) {
       console.log(error);
     } else {
       console.log('Email sent: ' + info.response);
+      res.redirect('/profile')
     }
   });
-  res.redirect('/profile')
+  
 
 })
 
