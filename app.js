@@ -50,7 +50,7 @@ passport.use (new FacebookStrategy({
       clientID: '1874655192687215',
       clientSecret: '79c493bdff6b73ef842c2aac5b2980b8',
       callbackURL: "https://ca.wissenaire.org/auth/facebook/callback",
-      profileFields: ['id', 'displayName', 'photos', 'email']
+      profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
