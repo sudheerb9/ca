@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var request = require('request');
+var nodemailer = require('nodemailer');
 
 const conn = mysql.createPool({
   host: "localhost",
@@ -130,7 +131,7 @@ router.post('/profile',function(req,res,next) {
         }
         else {
           console.log('no ca found')
-          res.redirect('/profile');
+          
         }
       })
     })
@@ -140,7 +141,7 @@ router.post('/profile',function(req,res,next) {
     conn.query(qr, (err, rows)=>{
       if(err) throw err;
       console.log(rows);
-      res.redirect('/profile');
+      
     })
   }
   else {
@@ -148,9 +149,35 @@ router.post('/profile',function(req,res,next) {
     conn.query(qr, (err, rows)=>{
       if(err) throw err;
       console.log(rows);
-      res.redirect('/profile');
+      
     })
   }
+
+  const phone = req.body.phone;
+  const output = `<p>Hi ${req.body.name}, You are registered as a CA of Wissenaire'21 with CA id ${req.body.wissid}</p>`;
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'sudheer.wissenaire@gmail.com',
+      pass: 'sudheer@7675974963'
+    }
+  });
+  
+  var mailOptions = {
+    from: 'sudheer.wissenaire@gmail.com',
+    to: 'trigger@applet.ifttt.com',
+    subject: phone,
+    html:output         
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+  res.redirect('/profile');
 })
 
 //add post
