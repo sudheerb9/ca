@@ -133,11 +133,9 @@ nav .nav-links .link:hover {
 }
 
 .support{
-  position: absolute;
-  left:40%;
-  bottom: 30%;
-  padding: 10px;
-  display: flex;
+  display:block;
+  width: 100%;
+  margin: auto;
 }
 a{
   margin: 0 20px;
@@ -158,21 +156,21 @@ a:hover{
 }
 
 @media screen and (max-width: 768px) {
-  .support {
+  /* .support {
     position: absolute;
     left: 30%;
-  }
+  } */
 }
 @media screen and (max-width: 425px) {
-  .support {
+  /* .support {
     position: absolute;
     left: 15%;
-  }
+  } */
 }
 
 @media screen and (max-width: 320px) {
-  .support {
+  /* .support {
     display: block;
     margin: auto;
-  }
+  } */
 }

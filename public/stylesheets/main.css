@@ -3277,9 +3277,7 @@ footer h4.h05::after {
   list-style: none;
   font-family: "metropolis-regular", sans-serif;
   margin: 0;
-  position: absolute;
-  top: 50%;
-  right: 3.3rem;
+
   -webkit-transform: translate3d(0, -50%, 0);
   -ms-transform: translate3d(0, -50%, 0);
   transform: translate3d(0, -50%, 0);
@@ -3354,8 +3352,5 @@ footer h4.h05::after {
 }
 
 @media screen and (max-width: 425px) {
-  .home-social {
-    position: absolute;
-    right: 0.5rem;
-  }
+  
 }

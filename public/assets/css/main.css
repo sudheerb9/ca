@@ -1440,7 +1440,7 @@ input::-moz-focus-inner {
   margin: 0;
   position: absolute;
   top: 50%;
-  right: 6.6rem;
+  /* right: 6.6rem; */
   -webkit-transform: translate3d(0, -50%, 0);
   -ms-transform: translate3d(0, -50%, 0);
   transform: translate3d(0, -50%, 0);
@@ -1715,9 +1715,6 @@ html.no-csstransitions .home-content__main {
     right: 54px;
   }
 
-  .home-social {
-    right: 3.6rem;
-  }
 
   .home-social li a {
     height: 32px;
@@ -1916,9 +1913,7 @@ html.no-csstransitions .home-content__main {
     padding-right: 25px;
     padding-left: 25px;
   }
-  .home-social {
-    right: 1.6rem;
-  }
+
 
 }
 
