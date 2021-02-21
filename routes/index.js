@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var nodemailer = require('nodemailer');
+var request = require('request');
 
 const conn = mysql.createPool({
   host: "localhost",
@@ -148,36 +149,10 @@ router.post('/profile',function(req,res,next) {
     })
   }
   
-  // const phone = req.body.phone;
-  // console.log(phone)
-  // const output = `<p>Hi ${req.body.name}, You are registered as a CA of Wissenaire'21 with CA id ${req.body.wissid}</p>`;
-  // var transporter = nodemailer.createTransport({
-  //   host: 'smtp.googlemail.com', 
-  //   port: 465, 
-  //   secure: true, 
-  //   auth: {
-  //     user: 'sudheer.wissenaire@gmail.com',
-  //     pass: ''
-  //   }
-  // });
-  // console.log(output);
-  // console.log('transporter');
-  
-  // var mailOptions = {
-  //   from: 'sudheer.wissenaire@gmail.com',
-  //   to: 'trigger@applet.ifttt.com',
-  //   subject: phone,
-  //   html:output         
-  // };
-  
-  // transporter.sendMail(mailOptions, function(error, info){
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log('Email sent: ' + info.response);
-  //     res.redirect('/profile')
-  //   }
-  // });
+  request.get("https://fundraiser.wissenaire.org/mail.php?name='"+req.body.name+"'&phone='"+req.body.phone+"'&wissid='"+req.body.wissid+"'")
+  .on('response', function(response) {
+    console.log(response.statusCode) ;
+  });
   res.redirect('/profile')
 
 })
