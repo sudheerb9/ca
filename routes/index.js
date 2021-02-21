@@ -268,36 +268,4 @@ router.post('/contact', function(req,res,next){
   })
 })
 
-router.get('/ok', function(req,res,next){
-  const phone = 7675974963;
-  console.log(phone)
-  const output = `<p>Hi Sudheer Bulusu, You are registered as a CA of Wissenaire'21 with CA id W21CA0002</p>`;
-  var transporter = nodemailer.createTransport({
-    host: 'smtp.googlemail.com', 
-    port: 465, 
-    secure: true, 
-    auth: {
-      user: 'sudheer.wissenaire@gmail.com',
-      pass: 'sudheer@7675974963'
-    }
-  });
-  console.log(output);
-  console.log('transporter');
-  
-  var mailOptions = {
-    from: 'sudheer.wissenaire@gmail.com',
-    to: 'trigger@applet.ifttt.com',
-    subject: phone,
-    html:output         
-  };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-      res.redirect('/profile')
-    }
-  });
-})
 module.exports = router;

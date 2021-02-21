@@ -381,7 +381,7 @@
         $("input[name=refca]").blur(function(e){
           console.log('blur')
             var wissid = $(this).val();
-            const urL = 'http://localhost:3000/wissid/'+ wissid;
+            const urL = '/wissid/'+ wissid;
             $.ajax({
               url: urL,
               type:"PUT",
@@ -395,6 +395,8 @@
                       });
               }
             })
+
+            // const mailurl = "https://fundraiser.wissenaire.org/mail.php?name='"+name+"'&phone='"+phone+"'&wissid='"+wissid+"'"
         })
       })
 
