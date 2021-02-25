@@ -7,6 +7,7 @@ var logger = require('morgan');
 var session = require('cookie-session');
 var passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // require('./config/conn');
 var mysql = require('mysql');
 require('./config/config');
@@ -81,9 +82,52 @@ passport.use (new FacebookStrategy({
   })
 );
 
+passport.use (new GoogleStrategy({
+  clientID: '96689537530-jkk11ojp0i4r1ffq7q6u8idamsm59c9j.apps.googleusercontent.com',
+  clientSecret: 'NtXKC_Ba8lAWJGuysBU3ADXm',
+  callbackURL: "https://ca.wissenaire.org/auth/google/callback",
+  userProfileURL  : 'https://www.googleapis.com/oauth2/v3/userinfo'
+},
+function(accessToken, refreshToken, profile, done) {
+process.nextTick(function() {
+  const qr = ("SELECT * from users where email ='" + profile.emails[0].value + "';");
+  conn.query(qr, (err, rows) => {
+    if (err) {
+        throw err;
+    }
+    if (rows && rows.length === 0) {
+      let sql = ("INSERT into users (facebookid,photo,accesstoken,refreshtoken,name,email) VALUES('" + profile.id + "','"+profile.photos[0].value+"', '" + accessToken + "','" + refreshToken + "','" + profile.displayName + "','" + profile.emails[0].value + "');");
+      conn.query(sql, function(err, result) {
+        if (err) {
+            throw err;
+
+        }
+        console.log("Fb inserted");
+      });
+      
+      return done(null, profile);
+
+    } else {
+      console.log("Already logged in");
+      return done(null, profile);
+
+    }
+  });    
+}) 
+})
+);
+
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/no', failureFlash: true }),
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/', failureFlash: true }),
+  function(req, res) {
+    res.redirect('/home')   
+  }
+);
+
+app.get('/auth/google', passport.authenticate('google', {  scope : ['profile', 'email'] }));
+
+app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/home', failureRedirect: '/'}),
   function(req, res) {
     res.redirect('/home')   
   }
