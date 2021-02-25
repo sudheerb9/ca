@@ -147,8 +147,8 @@
             <div class="row">
               <div class="col-12 col-md-5" style="margin-bottom: 30px;">
                 <div class="leaderboard_profile" style="border: 5px solid gold; border-radius: 8px;">
-                  <% var str = participant.facebookid;
-                  if(str.length <18) %>
+                  <% var str = participant.accesstoken;
+                  if(str.substr(0,2) != 'ya') %>
                     <img src="https://graph.facebook.com/<%= participant.facebookid %>/picture?height=500" style="width: 100%;">
                   <% else %>
                   <img src="<%= participant.photo %>" style="width: 100%;">
