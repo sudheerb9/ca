@@ -104,7 +104,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src='https://graph.facebook.com/<%= participant.facebookid %>/picture?height=500' alt="">
+                    <img class="img-xs rounded-circle" src='<%= participant.photo %>' alt="">
                     <p class="mb-0 d-none d-sm-block navbar-profile-name">&nbsp;<%= participant.name %>&nbsp;</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
@@ -147,7 +147,10 @@
             <div class="row">
               <div class="col-12 col-md-5" style="margin-bottom: 30px;">
                 <div class="leaderboard_profile" style="border: 5px solid gold; border-radius: 8px;">
-                  <img src="https://graph.facebook.com/<%= participant.facebookid %>/picture?height=500" style="width: 100%;">
+                  <% if(participant.facebookid.length <18) %>
+                    <img src="https://graph.facebook.com/<%= participant.facebookid %>/picture?height=500" style="width: 100%;">
+                  <% else %>
+                  <img src="<%= participant.photo %>" style="width: 100%;">
                   <h2 align="center" style="margin-top:0.2em"><%=participant.name %></h2>
                   <div align="center" style="margin-top:0.15em"><%=participant.wissid %></div>
                   <div align="center" style="margin-top:0.15em;">Rank: <%=participant.rank+1 %></div>
