@@ -83,13 +83,15 @@ passport.use (new FacebookStrategy({
 );
 
 passport.use (new GoogleStrategy({
-  clientID: '180080599553-ut8uqd7adc8fbhjh1946pjcdjja6m435.apps.googleusercontent.com',
-  clientSecret: 'Mhq7Mg3Dk52qgffxhN7MXkM1',
+  clientID: '96689537530-jkk11ojp0i4r1ffq7q6u8idamsm59c9j.apps.googleusercontent.com',
+  clientSecret: 'NtXKC_Ba8lAWJGuysBU3ADXm',
   callbackURL: "https://ca.wissenaire.org/auth/google/callback",
   userProfileURL  : 'https://www.googleapis.com/oauth2/v3/userinfo'
 },
 function(accessToken, refreshToken, profile, done) {
 process.nextTick(function() {
+  console.log('process.nextick')
+  console.log(profile)
   const qr = ("SELECT * from users where email ='" + profile.emails[0].value + "';");
   conn.query(qr, (err, rows) => {
     if (err) {
@@ -102,7 +104,7 @@ process.nextTick(function() {
             throw err;
 
         }
-        console.log("Fb inserted");
+        console.log("google inserted");
       });
       
       return done(null, profile);
