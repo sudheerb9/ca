@@ -243,4 +243,8 @@ router.post('/contact', function(req,res,next){
   })
 })
 
+router.get('/privacypolicy', function(req,res,next){
+  res.render('privacypolicy');
+})
+
 module.exports = router;
