@@ -48,8 +48,8 @@ passport.deserializeUser(function(user, done) {
 });
   
 passport.use (new FacebookStrategy({
-      clientID: '1874655192687215',
-      clientSecret: '79c493bdff6b73ef842c2aac5b2980b8',
+      clientID: '',
+      clientSecret: '',
       callbackURL: "https://ca.wissenaire.org/auth/facebook/callback",
       profileFields: ['id', 'displayName', 'photos', 'email']
   },
@@ -83,8 +83,8 @@ passport.use (new FacebookStrategy({
 );
 
 passport.use (new GoogleStrategy({
-  clientID: '96689537530-jkk11ojp0i4r1ffq7q6u8idamsm59c9j.apps.googleusercontent.com',
-  clientSecret: 'NtXKC_Ba8lAWJGuysBU3ADXm',
+  clientID: '',
+  clientSecret: '',
   callbackURL: "https://ca.wissenaire.org/auth/google/callback",
   userProfileURL  : 'https://www.googleapis.com/oauth2/v3/userinfo'
 },
