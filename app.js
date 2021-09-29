@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-app.use('/',httpsRedirect(true), indexRouter);
+app.use('/', indexRouter);
 
 //passport oauth 
 app.use(passport.initialize());
@@ -83,8 +83,8 @@ passport.use (new FacebookStrategy({
 );
 
 passport.use (new GoogleStrategy({
-  clientID: '',
-  clientSecret: '',
+  clientID: '180080599553-ut8uqd7adc8fbhjh1946pjcdjja6m435.apps.googleusercontent.com',
+  clientSecret: 'Mhq7Mg3Dk52qgffxhN7MXkM1',
   callbackURL: "https://ca.wissenaire.org/auth/google/callback",
   userProfileURL  : 'https://www.googleapis.com/oauth2/v3/userinfo'
 },
